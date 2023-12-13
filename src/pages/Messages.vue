@@ -5,16 +5,13 @@
 </script>
 
 <template>
-    <article class="message">
+    <article class="message is-warning">
         <div class="message-header">
-            <p>Peter Saan</p>
-            <button class="open" aria-label="open" @click="messageOpen=true"></button>
+            <p>Warning</p>
+            <button class="delete" aria-label="delete"></button>
         </div>
         <div class="message-body">
-            <p>Koerad on paremad kui kassid</p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, <em>tempus</em> quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
         </div>
     </article>
-    <Message :open="messageOpen" @close="messageOpen=false">
-
-    </Message>
 </template>
