@@ -4,5 +4,11 @@
 </script>
 
 <template>
-    <slot></slot>
+    <article class="message is-warning is-medium" v-if="open">
+        <div class="message-header">
+            <p>Peter Saan</p>
+            <button class="delete" @click="$emit('close')"></button>
+        </div>
+        <slot></slot>
+    </article>
 </template>
