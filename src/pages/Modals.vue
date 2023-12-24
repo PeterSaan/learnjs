@@ -2,7 +2,7 @@
     import { ref } from 'vue';
     import Modal from '../components/Modal.vue';
     import ImgModal from '../components/ImgModal.vue';
-    let modalOpen = ref(false);
+    let modalOpen = ref(false); 
     let modal2Open = ref(false);
     let modal3Open = ref(false);
 </script>
