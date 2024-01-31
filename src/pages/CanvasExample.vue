@@ -9,7 +9,6 @@
     let y = ref(10);
 
     onMounted(() => {
-        console.log(mycanvas);
         ctx.value = mycanvas.value.getContext('2d')
         ctx.value.beginPath();
         ctx.value.arc(400, 300, radius.value, 0, 2 * Math.PI);
@@ -32,9 +31,9 @@
 
 <template>
     <div class="container">
-        <input type="range" min="1" max="300" step="1" v-model="radius" @input="draw()">
+        <input type="range" min="10" max="300" step="1" v-model="radius" @input="draw()"><br>
         <canvas ref="mycanvas" height="600" width="800" @mousemove="hover"></canvas>
-        <CanvasBox v-if="ctx" :ctx="ctx" x="x" y="y" />
+        <CanvasBox v-if="ctx" :ctx="ctx" :x="x" :y="y" />
     </div>
 </template>
 
