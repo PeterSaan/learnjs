@@ -8,7 +8,8 @@ import Modals from './pages/Modals.vue';
 import Messages from './pages/Messages.vue'
 import ChuckNorris from './pages/ChuckNorris.vue';
 import RickAndMorty from './pages/RickAndMorty.vue';
-import CanvasExample from './pages/CanvasExample.vue'
+import CanvasExample from './pages/CanvasExample.vue';
+import MapExample from './pages/MapExample.vue';
 
 const routes = [
     { path: '/', component: Home, name: 'Home' },
@@ -18,6 +19,7 @@ const routes = [
     { path: '/chuck', component: ChuckNorris, name: 'Chuck Norris' },
     { path: '/rickandmorty', component: RickAndMorty, name: 'Rick and Morty' },
     { path: '/canvas', component: CanvasExample, name: 'Canvas' },
+    { path: '/map', component: MapExample, name: 'Map Example' },
 ];
 
 const router = createRouter({
