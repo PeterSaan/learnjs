@@ -1,5 +1,8 @@
 <script setup>
-    defineProps(['open', 'animal']);
+    defineProps({
+        'open': Boolean, 
+        'animal': String
+    });
 </script>
 
 <template>
