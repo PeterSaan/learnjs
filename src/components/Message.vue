@@ -1,7 +1,13 @@
 <script setup>
     defineProps({
-        'open': Boolean, 
-        'animal': String
+        'open': {
+            Boolean,
+            required: true,
+        }, 
+        'animal': {
+            String,
+            required: true,
+        }
     });
 </script>
 

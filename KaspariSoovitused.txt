@@ -1,2 +1,0 @@
-Töö otsimiseks:
-    awesome interview questrions (https://github.com/DopplerHQ/awesome-interview-questions)
