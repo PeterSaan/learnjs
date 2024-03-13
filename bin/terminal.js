@@ -1,32 +1,28 @@
-function write(text) {
-    process.stdout.write(text);
-}
+import inquirer from "inquirer";
 
-// Text color
-for (let i = 0; i < 255; i++) {
-    if (i % 16 === 0) {
-        write('\n');
-    }
-    write(`\x1B[38;5;${i}]m`);
-    write(i.toString().padEnd(4, ' '));
-}
-
-// Bg color
-for (let i = 0; i < 255; i++) {
-    if (i % 16 === 0) {
-        write('\n');
-    }
-    write(`\x1B[48;5;${i}]m`);
-    write(' ');
-    write('\x1B[0m');
-}
-
-// Truecolor
-for (let i = 0; i < 255; i++) {
-    if (i % 16 === 0) {
-        write('\n');
-    }
-    write(`\x1B[48;2;${i};0;0m`);
-    write(' ');
-    write('\x1B[0m');
-}
+inquirer
+    .prompt([
+        { type: "input", name: "name", message: "What's your name?" },
+        {
+            type: 'list',
+            name: 'food',
+            message: 'What is your favorite food?',
+            choices: ['pizza', 'burger', 'chicken', 'sushi']
+        },
+        {
+            type: 'checkbox',
+            name: 'foods',
+            message: 'What are your favorite foods?',
+            choices: ['pizza', 'burger', 'chicken', 'sushi']
+        },
+    ])
+    .then(answers => {
+        console.log(answers);
+    })
+    .catch(err => {
+        if (err.isTtyError) {
+            console.log('Prompt couldn\'t be rendered in the current environment');
+        } else {
+            console.log('Something went wrong');
+        }
+    })
