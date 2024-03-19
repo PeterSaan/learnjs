@@ -1,28 +1,33 @@
-import inquirer from "inquirer";
+import axios from 'axios';
+import * as cheerio from 'cheerio';
+import fs from 'node:fs';
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
-inquirer
-    .prompt([
-        { type: "input", name: "name", message: "What's your name?" },
-        {
-            type: 'list',
-            name: 'food',
-            message: 'What is your favorite food?',
-            choices: ['pizza', 'burger', 'chicken', 'sushi']
-        },
-        {
-            type: 'checkbox',
-            name: 'foods',
-            message: 'What are your favorite foods?',
-            choices: ['pizza', 'burger', 'chicken', 'sushi']
-        },
-    ])
-    .then(answers => {
-        console.log(answers);
-    })
-    .catch(err => {
-        if (err.isTtyError) {
-            console.log('Prompt couldn\'t be rendered in the current environment');
+if(!fs.existsSync('cache')){
+    fs.mkdirSync('cache');
+}
+
+for(let i = 1; i < 10; i++){
+    
+    let cacheFile = `cache/${i}.json`;
+    let data;
+    if(!fs.existsSync(cacheFile)){
+        await sleep(1000);
+        let res = await axios.post('https://kinnisvara24.ee/search', {
+            page: i
+        });
+        data = res.data;
+        fs.writeFileSync(cacheFile, JSON.stringify(data));
+        console.log('LIVE REQUEST!!!!');
+    } else {
+        data = JSON.parse(fs.readFileSync(cacheFile));
+    }
+    
+    data.data.forEach(ad => {
+        if(ad.address.address){
+            console.log(ad.hind, ad.address.address);
         } else {
-            console.log('Something went wrong');
+            console.log(ad.hind, ad.address.short_address);
         }
-    })
+    });
+}
