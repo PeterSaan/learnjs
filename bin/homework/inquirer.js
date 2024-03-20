@@ -53,6 +53,16 @@ inquirer
                 }
             ]
         },
+        {
+            type: 'password',
+            name: 'sumnSecret',
+            message: 'Enter something secret'
+        },
+        {
+            type: 'editor',
+            name: 'idkWtfThisIs',
+            message: 'Idk'
+        },
     ])
     .then((answers) => {
         console.log(answers);
