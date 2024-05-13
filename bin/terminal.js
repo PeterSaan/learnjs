@@ -7,27 +7,22 @@ if(!fs.existsSync('cache')){
     fs.mkdirSync('cache');
 }
 
-for(let i = 1; i < 10; i++){
-    
-    let cacheFile = `cache/${i}.json`;
+for(let i = 2905; i>2895; i--){
+
+    let cacheName = `cache/${i}.html`;
     let data;
-    if(!fs.existsSync(cacheFile)){
+    if(!fs.existsSync(cacheName)){
         await sleep(1000);
-        let res = await axios.post('https://kinnisvara24.ee/search', {
-            page: i
-        });
+        let res = await axios.get(`https://xkcd.com/${i}/`);
         data = res.data;
-        fs.writeFileSync(cacheFile, JSON.stringify(data));
+        fs.writeFileSync(cacheName, data);
         console.log('LIVE REQUEST!!!!');
     } else {
-        data = JSON.parse(fs.readFileSync(cacheFile));
+        data = fs.readFileSync(cacheName);
     }
-    
-    data.data.forEach(ad => {
-        if(ad.address.address){
-            console.log(ad.hind, ad.address.address);
-        } else {
-            console.log(ad.hind, ad.address.short_address);
-        }
-    });
+    const $ = cheerio.load(data);
+    let img = $('div#comic>img');
+    console.log(img.attr('src'));
+    console.log(img.attr('title'));
+    console.log(img.attr('alt'));
 }
