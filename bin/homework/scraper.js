@@ -1,6 +1,6 @@
 
 // The scraper scrapes autodiiler.ee for car offers. Filters: only cars, price up to 2500€, engine power from 100kW.
-// The scraper automatically takes the amount of pages and scrapes all the offers from all the pages.
+// The scraper automatically takes the amount of pages and scrapes all the offers from all the pages. Even if you change the query params.
 
 import axios from "axios";
 import * as cheerio from "cheerio";
@@ -21,6 +21,7 @@ for(let i = 1; i <= amountofPages; i++) {
     for(let j = 0; j < amountOfOffers - 2; j++) {
         let ans = []
         let offerData = `${lookable}>div[data-v-5f27db5d]:nth(1)>div>div:nth(${j})>div.p-4`;
+        let offerLink = 'https://autodiiler.ee' + $(`${offerData}>h2>a`).attr('href');
         let offerTitle = $(`${offerData}>h2>a`).text();
         let offerPrice = () => {
             if( $(`${offerData}>div.flex>div>div:first>span.!text-red-600`).html() ) {
@@ -40,6 +41,7 @@ for(let i = 1; i <= amountofPages; i++) {
         };
 
         ans.push({
+            offerLink,
             offerTitle,
             price: offerPrice(),
             seller,
